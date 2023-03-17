@@ -1,0 +1,14 @@
+version: "4"
+
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    command: postgres -c stats_temp_directory=/tmp
+    ports:
+      - ${PG_PORT}:${PG_PORT}
+    environment:
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    volumes:
+      - ./.db:/var/lib/postgresql/data
